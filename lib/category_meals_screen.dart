@@ -19,10 +19,10 @@ class CategoryMealsScreen extends StatelessWidget {
           categoryTitle,
         ),
       ),
-      body: Center(
-        child: Text(
-          'The Recipes For The Category!',
-        ),
+      body: ListView.builder(itemBuilder: (ctx, index) {
+
+      },
+      itemCount: ,
       ),
     );
   }
