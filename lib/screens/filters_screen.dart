@@ -5,6 +5,11 @@ import '../widgets/main_drawer.dart';
 class FiltersScreen extends StatefulWidget {
   static const routeName = '/filters';
 
+  final Function saveFilters;
+
+
+  FiltersScreen(this.saveFilters);
+
   @override
   _FiltersScreenState createState() => _FiltersScreenState();
 }
@@ -30,6 +35,20 @@ class _FiltersScreenState extends State<FiltersScreen> {
     return Scaffold(
       appBar: AppBar(
         title: Text('Your Filters'),
+        actions: [
+          IconButton(
+            icon: Icon(Icons.save),
+            onPressed: () {
+              final selectedFilter = {
+                'gluten': _glutenFree,
+                'lactose': _lactoseFree,
+                'vegan': _vegan,
+                'vegetarian': _vegetarian,
+              };
+              widget.saveFilters(selectedFilter);
+            },
+          ),
+        ],
       ),
       drawer: MainDrawer(),
       body: Column(
@@ -60,9 +79,9 @@ class _FiltersScreenState extends State<FiltersScreen> {
                   'Lactose-Free',
                   'Only include lactose-free meals',
                   _lactoseFree,
-                      (newValue) {
+                  (newValue) {
                     setState(
-                          () {
+                      () {
                         _lactoseFree = newValue;
                       },
                     );
@@ -72,9 +91,9 @@ class _FiltersScreenState extends State<FiltersScreen> {
                   'Vegetarian',
                   'Only include vegetarian meals',
                   _vegetarian,
-                      (newValue) {
+                  (newValue) {
                     setState(
-                          () {
+                      () {
                         _vegetarian = newValue;
                       },
                     );
@@ -84,9 +103,9 @@ class _FiltersScreenState extends State<FiltersScreen> {
                   'Vegan',
                   'Only include vegan meals',
                   _vegan,
-                      (newValue) {
+                  (newValue) {
                     setState(
-                          () {
+                      () {
                         _vegan = newValue;
                       },
                     );
